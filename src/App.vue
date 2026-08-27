@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 
-// Local data source: the five tallest mountains in the world.
+
 const mountains = [
   {
     rank: 1, name: 'Mount Everest', height_m: 8849, height_ft: 29032,
@@ -55,7 +55,7 @@ function goTo(i) {
   index.value = Math.max(0, Math.min(count - 1, i));
 }
 
-// Arrow-key navigation.
+
 function onKey(e) {
   if (e.key === 'ArrowRight') goTo(index.value + 1);
   if (e.key === 'ArrowLeft') goTo(index.value - 1);
@@ -63,9 +63,8 @@ function onKey(e) {
 onMounted(() => window.addEventListener('keydown', onKey));
 onUnmounted(() => window.removeEventListener('keydown', onKey));
 
-// Pointer handlers give swipe on touch and drag on desktop.
 function onDown(e) {
-  if (e.target.closest('button')) return; // let arrows/dots/nav work
+  if (e.target.closest('button')) return; 
   dragging.value = true;
   startX = e.clientX;
   e.currentTarget.setPointerCapture(e.pointerId);
